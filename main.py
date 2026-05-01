@@ -1,50 +1,39 @@
 import streamlit as st
+import random
 
-st.set_page_size = "centered"
-st.title("📟 حاسبة علاء المطورة")
+# إعدادات الصفحة
+st.set_page_config(page_title="ملهم علاء", page_icon="🌟")
 
-# شاشة العرض (Display)
-if 'result' not in st.session_state:
-    st.session_state.result = "0"
+# قائمة الحكم والنصائح (يمكنك إضافة المزيد هنا)
+quotes = [
+    "النجاح هو الانتقال من فشل إلى فشل دون فقدان الحماس. 💪",
+    "أفضل طريقة للتنبؤ بالمستقبل هي أن تخترعه. 🚀",
+    "لا تتوقف عندما تتعب، توقف عندما تنتهي. 🔥",
+    "كل إنجاز عظيم بدأ بقرار أن تحاول. ✨",
+    "المبرمج الناجح هو شخص يرى المشكلة فرصة للتعلم. 💻",
+    "البدايات الصعبة تصنع نهايات عظيمة. 🏅",
+    "أنت اليوم مبرمج، وغداً ستبني العالم بكودك. 🌍"
+]
 
-st.markdown(f"""
-<div style="background-color: #262730; padding: 20px; border-radius: 10px; text-align: right;">
-    <h1 style="color: #00FF00; font-family: monospace;">{st.session_state.result}</h1>
-</div>
-""", unsafe_allow_html=True)
+# تصميم الواجهة
+st.title("🌟 تطبيق 'ملهم علاء' الذكي")
+st.write("اضغط على الزر في الأسفل لتصلك رسالة إلهام خاصة بك اليوم.")
 
-st.write("---")
-
-# ترتيب الأزرار في أعمدة
-col1, col2, col3, col4 = st.columns(4)
-
-with col1:
-    if st.button("7"): st.session_state.result += "7"
-    if st.button("4"): st.session_state.result += "4"
-    if st.button("1"): st.session_state.result += "1"
-    if st.button("C"): st.session_state.result = "0"
-
-with col2:
-    if st.button("8"): st.session_state.result += "8"
-    if st.button("5"): st.session_state.result += "5"
-    if st.button("2"): st.session_state.result += "2"
-    if st.button("0"): st.session_state.result += "0"
-
-with col3:
-    if st.button("9"): st.session_state.result += "9"
-    if st.button("6"): st.session_state.result += "6"
-    if st.button("3"): st.session_state.result += "3"
-    if st.button("="):
-        try:
-            st.session_state.result = str(eval(st.session_state.result))
-        except:
-            st.session_state.result = "Error"
-
-with col4:
-    if st.button("/"): st.session_state.result += "/"
-    if st.button("*"): st.session_state.result += "*"
-    if st.button("-"): st.session_state.result += "-"
-    if st.button("+"): st.session_state.result += "+"
+# زر توليد الحكمة
+if st.button("✨ أعطني حكمة اليوم ✨", use_container_width=True):
+    # اختيار حكمة عشوائية
+    quote = random.choice(quotes)
+    
+    # عرض الحكمة بشكل أنيق
+    st.markdown(f"""
+    <div style="background-color: #f0f2f6; padding: 30-px; border-left: 10px solid #ff4b4b; border-radius: 10px; margin-top: 20px;">
+        <h2 style="color: #31333F; text-align: center; font-style: italic;">"{quote}"</h2>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # إضافة حركات احتفالية (بالونات وألعاب نارية سحابية)
+    st.balloons()
+    st.snow() # حركة خفيفة تشبه الثلج
 
 st.write("---")
-st.info("اضغط على الأزرار لتجربة الحاسبة")
+st.caption("برمجة وتطوير: علاء 2026")
