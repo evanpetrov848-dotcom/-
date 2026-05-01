@@ -1,39 +1,39 @@
-import streamlit as st
-import random
+# --- إعدادات المنصة ---
+exchange_rate = 550.0  # سعر الصرف (1 دولار = 550 جنيه)
+commission_rate = 0.01  # عمولتك هي 1% من المبلغ
 
-# إعدادات الصفحة
-st.set_page_config(page_title="ملهم علاء", page_icon="🌟")
+print("--- 📱 Welcome to Your USDT Exchange ---")
+print(f"Current Rate: 1 USDT = {exchange_rate} SDG")
+print(f"Our Commission: {commission_rate * 100}%")
+print("---------------------------------------")
 
-# قائمة الحكم والنصائح (يمكنك إضافة المزيد هنا)
-quotes = [
-    "النجاح هو الانتقال من فشل إلى فشل دون فقدان الحماس. 💪",
-    "أفضل طريقة للتنبؤ بالمستقبل هي أن تخترعه. 🚀",
-    "لا تتوقف عندما تتعب، توقف عندما تنتهي. 🔥",
-    "كل إنجاز عظيم بدأ بقرار أن تحاول. ✨",
-    "المبرمج الناجح هو شخص يرى المشكلة فرصة للتعلم. 💻",
-    "البدايات الصعبة تصنع نهايات عظيمة. 🏅",
-    "أنت اليوم مبرمج، وغداً ستبني العالم بكودك. 🌍"
-]
+# 1. السؤال عن العملية
+action = input("Type (buy) to purchase or (sell) to cash out: ").lower()
 
-# تصميم الواجهة
-st.title("🌟 تطبيق 'ملهم علاء' الذكي")
-st.write("اضغط على الزر في الأسفل لتصلك رسالة إلهام خاصة بك اليوم.")
+# 2. السؤال عن الكمية
+amount = float(input("How many USDT? "))
 
-# زر توليد الحكمة
-if st.button("✨ أعطني حكمة اليوم ✨", use_container_width=True):
-    # اختيار حكمة عشوائية
-    quote = random.choice(quotes)
-    
-    # عرض الحكمة بشكل أنيق
-    st.markdown(f"""
-    <div style="background-color: #f0f2f6; padding: 30-px; border-left: 10px solid #ff4b4b; border-radius: 10px; margin-top: 20px;">
-        <h2 style="color: #31333F; text-align: center; font-style: italic;">"{quote}"</h2>
-    </div>
-    """, unsafe_allow_html=True)
-    
-    # إضافة حركات احتفالية (بالونات وألعاب نارية سحابية)
-    st.balloons()
-    st.snow() # حركة خفيفة تشبه الثلج
+# 3. حساب العمليات
+if action == "buy":
+    cost = amount * exchange_rate
+    fee = cost * commission_rate
+    total = cost + fee
+    print(f"\n--- Receipt ---")
+    print(f"Price: {cost} SDG")
+    print(f"Fee (1%): {fee} SDG")
+    print(f"TOTAL TO PAY: {total} SDG")
 
-st.write("---")
-st.caption("برمجة وتطوير: علاء 2026")
+elif action == "sell":
+    value = amount * exchange_rate
+    fee = value * commission_rate
+    total = value - fee
+    print(f"\n--- Receipt ---")
+    print(f"Price: {value} SDG")
+    print(f"Fee (1%): {fee} SDG")
+    print(f"YOU WILL RECEIVE: {total} SDG")
+
+else:
+    print("Invalid action! Please run the program again.")
+
+print("---------------------------------------")
+print("Thank you for using our service!")
