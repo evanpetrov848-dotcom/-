@@ -1,26 +1,35 @@
-import tkinter as tk
-from tkinter import messagebox
+# كود تطبيق المحفظة الرقمية المتكامل
+balance = 0.0 # رصيدك الحالي في المحفظة
 
-# وظيفة الزر عند الضغط عليه
-def calculate():
-    try:
-        amount = float(entry.get())
-        result = amount * 550  # السعر
-        messagebox.showinfo("النتيجة", f"المبلغ بالعملة المحلية: {result} SDG")
-    except:
-        messagebox.showerror("خطأ", "الرجاء إدخال رقم صحيح")
+while True:
+    print("\n" + "="*30)
+    print("      ALADDIN DIGITAL WALLET      ")
+    print("="*30)
+    print(f"Current Balance: {balance} USDT")
+    print("-"*30)
+    print("1. ➕ Deposit (إيداع)")
+    print("2. ➖ Withdraw (سحب)")
+    print("3. ❌ Exit (خروج)")
+    print("-"*30)
 
-# إنشاء النافذة
-root = tk.Tk()
-root.title("USDT Exchange")
-root.geometry("300x200")
+    choice = input("Select an option (1-3): ")
 
-# إضافة نص وصندوق إدخال وزر
-tk.Label(root, text="أدخل كمية USDT:").pack(pady=10)
-entry = tk.Entry(root)
-entry.pack(pady=5)
+    if choice == "1":
+        amount = float(input("Enter amount to deposit: "))
+        balance = balance + amount
+        print(f"✅ Success! Added {amount} USDT")
 
-btn = tk.Button(root, text="احسب السعر", command=calculate)
-btn.pack(pady=20)
+    elif choice == "2":
+        amount = float(input("Enter amount to withdraw: "))
+        if amount <= balance:
+            balance = balance - amount
+            print(f"✅ Success! Withdrew {amount} USDT")
+        else:
+            print("❌ Error: Insufficient balance!")
 
-root.mainloop()
+    elif choice == "3":
+        print("Closing Wallet... Goodbye!")
+        break # هذا الأمر يغلق البرنامج
+
+    else:
+        print("❌ Invalid Choice! Try again.")
